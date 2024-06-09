@@ -9,12 +9,16 @@ export default class Newsitem extends Component {
           <img
             height="200"
             className="card-img-top"
-            src={imageUrl}
+            src={
+              !imageUrl
+                ? "https://ichef.bbci.co.uk/news/1024/branded_news/6537/live/ff895b30-24e4-11ef-baa7-25d483663b8e.jpg"
+                : imageUrl
+            }
             alt="Card image cap"
           />
           <div className="card-body">
             <h5 className="card-title">{title}...</h5>
-            <p className="card-text">{description}...</p>
+            <p className="card-text">{description}</p>
             <a href={newsUrl} target="_blank" className="btn btn-primary">
               Read More
             </a>
