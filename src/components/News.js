@@ -178,44 +178,20 @@ export default class News extends Component {
       <div className="container my-3">
         <h2>New headlines of today</h2>
         <div className="row">
-          <div className="col-md-3 my-3">
-            <Newsitem
-              title="Title 1"
-              description="This is the description for title no one"
-              imageUrl="https://www.marketingdirecto.com/wp-content/uploads/2024/06/Diseno-sin-titulo-2024-06-07T094921.447-1.jpg"
-              newsUrl="Todo"
-            />
-          </div>
-
-          <div className="col-md-3 my-3">
-            <Newsitem
-              title="Title 1"
-              description="This s the description for title no one"
-              imageUrl="https://www.marketingdirecto.com/wp-content/uploads/2024/06/Diseno-sin-titulo-2024-06-07T094921.447-1.jpg"
-            />
-          </div>
-          <div className="col-md-3 my-3">
-            <Newsitem
-              title="Title 1"
-              description="This s the description for title no one"
-              imageUrl="https://www.marketingdirecto.com/wp-content/uploads/2024/06/Diseno-sin-titulo-2024-06-07T094921.447-1.jpg"
-            />
-          </div>
-          <div className="col-md-3 my-3">
-            <Newsitem
-              title="Title 1"
-              description="This s the description for title no one"
-              imageUrl="https://www.marketingdirecto.com/wp-content/uploads/2024/06/Diseno-sin-titulo-2024-06-07T094921.447-1.jpg"
-            />
-          </div>
-          <div className="col-md-3 my-3">
-            <Newsitem
-              title="Title 1"
-              description="This s the description for title no one"
-              imageUrl="https://www.marketingdirecto.com/wp-content/uploads/2024/06/Diseno-sin-titulo-2024-06-07T094921.447-1.jpg"
-            />
-          </div>
+          {this.state.articles.map((element) => {
+            return (
+              <div className="col-md-3 my-3" key={element.url}>
+                <Newsitem
+                  title={element.title.slice(0, 30)}
+                  description={element.description.slice(0, 60)}
+                  imageUrl={element.urlToImage}
+                  newsUrl={element.url}
+                />
+              </div>
+            );
+          })}
         </div>
+        ;
       </div>
     );
   }
