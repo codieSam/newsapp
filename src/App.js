@@ -6,7 +6,6 @@ import News from "./components/News";
 import Newsitem from "./components/Newsitem";
 
 export default class App extends Component {
-  name = "Sam";
   render() {
     return (
       <div>
