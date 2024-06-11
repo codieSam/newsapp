@@ -167,13 +167,21 @@ export default class News extends Component {
         "Watch Saad Bin Zafar's \"absolute ripper\" of a delivery to dismiss Harry Tector, leaving Ireland on 41-3 in their ICC Men's T20 Cricket World Cup match against Canada in New York.\r\nFOLLOW LIVE: Canada… [+64 chars]",
     },
   ];
-  constructor() {
-    super();
+
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       loading: true,
       page: 1,
     };
+    document.title = `${this.capitalizeFirstLetter(
+      this.props.category
+    )}-NewsApp`;
   }
 
   async componentDidMount() {
@@ -216,10 +224,14 @@ export default class News extends Component {
     });
   };
 
+  l;
+
   render() {
     return (
-      <div className="container my-3">
-        <h2>New headlines of today</h2>
+      <div className="container my-3 text-center">
+        <h2>
+          Top - {this.capitalizeFirstLetter(this.props.category)} headlines{" "}
+        </h2>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading &&
@@ -238,6 +250,9 @@ export default class News extends Component {
                         : element.description.slice(0, 60)
                     }
                     imageUrl={element.urlToImage}
+                    publishedAt={element.publishedAt}
+                    author={!element.author ? "Samrat" : element.author}
+                    source={element.source.name}
                     newsUrl={element.url}
                   />
                 </div>
